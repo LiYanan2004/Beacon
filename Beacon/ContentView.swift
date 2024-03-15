@@ -11,7 +11,7 @@ struct ContentView: View {
     private enum Tab {
         case inspector, simulator
     }
-    @State private var selection: Tab = .inspector
+    @State private var selection: Tab? = .inspector
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     var body: some View {
@@ -79,6 +79,7 @@ struct ContentView: View {
             switch selection {
             case .inspector: iBeaconInspector()
             case .simulator: iBeaconSimulator()
+            default: ContentUnavailableView("Select", systemImage: "wave.3.forward")
             }
         }
     }
