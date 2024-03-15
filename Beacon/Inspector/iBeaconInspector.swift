@@ -14,6 +14,7 @@ struct iBeaconInspector: View {
         Form {
             if manager.ibeacons.isEmpty {
                 ProgressView()
+                    .frame(maxWidth: .infinity)
             } else {
                 ForEach(manager.ibeacons) { ibeacon in
                     Section {
