@@ -23,7 +23,6 @@ class iBeaconInspectionManager: NSObject {
     
     deinit {
         centralManager.stopScan()
-        print("deinit")
     }
 }
 
@@ -39,6 +38,6 @@ extension iBeaconInspectionManager: CBCentralManagerDelegate {
         guard let advData else { return }
         
         guard let ibeacon = iBeacon(manufacturerData: advData) else { return }
-        ibeacons.updateOrAppend(ibeacon)
+        ibeacons.updateOrInsert(ibeacon, at: 0)
     }
 }

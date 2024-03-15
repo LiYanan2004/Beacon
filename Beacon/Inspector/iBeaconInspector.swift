@@ -25,7 +25,6 @@ struct iBeaconInspector: View {
             }
         }
         .formStyle(.grouped)
-        .alternatingRowBackgrounds()
     }
 }
 
