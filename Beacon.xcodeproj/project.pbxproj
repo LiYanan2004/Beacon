@@ -17,6 +17,7 @@
 		385209172BA32F96001EE67A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385209162BA32F96001EE67A /* ContentView.swift */; };
 		385209192BA32F97001EE67A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 385209182BA32F97001EE67A /* Assets.xcassets */; };
 		3852091C2BA32F97001EE67A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3852091B2BA32F97001EE67A /* Preview Assets.xcassets */; };
+		38AA3E5C2BA4AA5900AB6414 /* iBeaconImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA3E5B2BA4AA5900AB6414 /* iBeaconImportSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		385209162BA32F96001EE67A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		385209182BA32F97001EE67A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3852091B2BA32F97001EE67A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		38AA3E5B2BA4AA5900AB6414 /* iBeaconImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconImportSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				384B77AF2BA491EA001B28E1 /* iBeaconSimulator.swift */,
+				38AA3E5B2BA4AA5900AB6414 /* iBeaconImportSheet.swift */,
 				384B77B12BA49355001B28E1 /* iBeaconSimulationManager.swift */,
 			);
 			path = Simulator;
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38AA3E5C2BA4AA5900AB6414 /* iBeaconImportSheet.swift in Sources */,
 				38295DA12BA459ED000FE12B /* iBeacon.swift in Sources */,
 				38295D9B2BA438E0000FE12B /* iBeaconInspector.swift in Sources */,
 				384B77B22BA49355001B28E1 /* iBeaconSimulationManager.swift in Sources */,

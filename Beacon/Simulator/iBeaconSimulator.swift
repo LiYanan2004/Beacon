@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct iBeaconSimulator: View {
-    @State private var uuid = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825"
-    @State private var major: UInt16 = 10009
-    @State private var minor: UInt16 = 12023
-    
     @State private var manager = iBeaconSimulatorManager()
     var simulatting: Binding<Bool> {
         Binding<Bool> {
@@ -24,6 +20,15 @@ struct iBeaconSimulator: View {
             }
         }
     }
+    
+    @State private var uuid = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825"
+    @State private var major: UInt16 = 10009
+    @State private var minor: UInt16 = 12023
+    
+    @State private var showImporter = false
+    @State private var importediBeacons = [iBeacon]()
+    @State private var showiBeaconsPicker = false
+    @State private var importediBeaconSelection: iBeacon?
     
     var body: some View {
         Form {
@@ -59,6 +64,28 @@ struct iBeaconSimulator: View {
         .scenePadding()
         .formStyle(.grouped)
         #endif
+        .toolbar {
+            Button("Import", systemImage: "square.and.arrow.down") {
+                showImporter = true
+            }
+        }
+        .fileImporter(isPresented: $showImporter, allowedContentTypes: [.text, .json]) { result in
+            guard let url = try? result.get() else { return }
+            guard url.startAccessingSecurityScopedResource() else { return }
+            defer { url.stopAccessingSecurityScopedResource() }
+            guard let data = try? Data(contentsOf: url) else { return }
+            importediBeacons = (try? JSONDecoder().decode([iBeacon].self, from: data)) ?? []
+            showiBeaconsPicker = true
+        }
+        .sheet(isPresented: $showiBeaconsPicker) {
+            iBeaconImportSelectionSheet(importediBeacons: importediBeacons) { selection in
+                uuid = selection.beaconID.uuidString
+                major = selection.major
+                minor = selection.minor
+                self.importediBeaconSelection = nil
+                self.importediBeacons = []
+            }
+        }
     }
 }
 
