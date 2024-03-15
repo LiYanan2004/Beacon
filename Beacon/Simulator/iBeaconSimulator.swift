@@ -37,22 +37,28 @@ struct iBeaconSimulator: View {
                     major = UInt16.random(in: 0..<UInt16.max)
                     minor = UInt16.random(in: 0..<UInt16.max)
                 }
+            } footer: {
+                Text("Generate Random iBeacon")
             }
             
             Section {
                 TextField("UUID", text: $uuid, prompt: Text("UUID for this iBeacon"))
                 TextField("Major", value: $major, format: .number.grouping(.never))
                 TextField("Major", value: $minor, format: .number.grouping(.never))
+            } header: {
+                Text("iBeacon Info")
             }
             
             Section {
-                Toggle("Simulate", isOn: simulatting)
+                Toggle("Advertise", isOn: simulatting)
+            } header: {
+                Text("Advertise iBeacon")
             }
         }
-    }
-    
-    func startSimulatting() {
-        
+        #if os(macOS)
+        .scenePadding()
+        .formStyle(.grouped)
+        #endif
     }
 }
 
