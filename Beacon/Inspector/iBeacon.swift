@@ -6,14 +6,21 @@
 //
 
 import Foundation
+import CoreTransferable
 
 struct iBeacon: Sendable, Codable, Identifiable, Hashable {
-    var id: String { "\(beaconID.uuidString)-\(major)-\(minor)" }
+    public var id: String { "\(beaconID.uuidString)-\(major)-\(minor)" }
     var beaconID: UUID
     var major: UInt16
     var minor: UInt16
     
     var manufacturerData: Data?
+}
+
+extension iBeacon: Transferable {
+    static var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(contentType: .json)
+    }
 }
 
 extension iBeacon {

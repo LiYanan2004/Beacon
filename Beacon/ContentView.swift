@@ -23,16 +23,20 @@ struct ContentView: View {
     
     private var tabview: some View {
         TabView(selection: $selection) {
-            iBeaconSimulator()
-                .tag(Tab.simulator)
-                .tabItem {
-                    Label("Simulator", systemImage: "wave.3.forward")
-                }
-            iBeaconInspector()
-                .tag(Tab.inspector)
-                .tabItem {
-                    Label("Inspector", systemImage: "scope")
-                }
+            NavigationStack {
+                iBeaconSimulator()
+            }
+            .tag(Tab.simulator)
+            .tabItem {
+                Label("Simulator", systemImage: "wave.3.forward")
+            }
+            NavigationStack {
+                iBeaconInspector()    
+            }
+            .tag(Tab.inspector)
+            .tabItem {
+                Label("Inspector", systemImage: "scope")
+            }
         }
     }
     
