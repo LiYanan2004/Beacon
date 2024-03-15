@@ -11,6 +11,8 @@
 		38295D9E2BA43928000FE12B /* iBeaconInspectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38295D9D2BA43928000FE12B /* iBeaconInspectionManager.swift */; };
 		38295DA12BA459ED000FE12B /* iBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38295DA02BA459ED000FE12B /* iBeacon.swift */; };
 		384B77AE2BA48F3E001B28E1 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 384B77AD2BA48F3E001B28E1 /* Collections */; };
+		384B77B02BA491EA001B28E1 /* iBeaconSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384B77AF2BA491EA001B28E1 /* iBeaconSimulator.swift */; };
+		384B77B22BA49355001B28E1 /* iBeaconSimulationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384B77B12BA49355001B28E1 /* iBeaconSimulationManager.swift */; };
 		385209152BA32F96001EE67A /* BeaconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385209142BA32F96001EE67A /* BeaconApp.swift */; };
 		385209172BA32F96001EE67A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385209162BA32F96001EE67A /* ContentView.swift */; };
 		385209192BA32F97001EE67A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 385209182BA32F97001EE67A /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 		38295D9D2BA43928000FE12B /* iBeaconInspectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconInspectionManager.swift; sourceTree = "<group>"; };
 		38295D9F2BA455EB000FE12B /* Beacon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beacon.entitlements; sourceTree = "<group>"; };
 		38295DA02BA459ED000FE12B /* iBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeacon.swift; sourceTree = "<group>"; };
+		384B77AF2BA491EA001B28E1 /* iBeaconSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconSimulator.swift; sourceTree = "<group>"; };
+		384B77B12BA49355001B28E1 /* iBeaconSimulationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconSimulationManager.swift; sourceTree = "<group>"; };
 		385209112BA32F96001EE67A /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		385209142BA32F96001EE67A /* BeaconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconApp.swift; sourceTree = "<group>"; };
 		385209162BA32F96001EE67A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 		384B77AB2BA48CE1001B28E1 /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				384B77AF2BA491EA001B28E1 /* iBeaconSimulator.swift */,
+				384B77B12BA49355001B28E1 /* iBeaconSimulationManager.swift */,
 			);
 			path = Simulator;
 			sourceTree = "<group>";
@@ -174,8 +180,10 @@
 			files = (
 				38295DA12BA459ED000FE12B /* iBeacon.swift in Sources */,
 				38295D9B2BA438E0000FE12B /* iBeaconInspector.swift in Sources */,
+				384B77B22BA49355001B28E1 /* iBeaconSimulationManager.swift in Sources */,
 				38295D9E2BA43928000FE12B /* iBeaconInspectionManager.swift in Sources */,
 				385209172BA32F96001EE67A /* ContentView.swift in Sources */,
+				384B77B02BA491EA001B28E1 /* iBeaconSimulator.swift in Sources */,
 				385209152BA32F96001EE67A /* BeaconApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -54,7 +54,7 @@ struct ContentView: View {
     
     private var tabview: some View {
         TabView(selection: $selection) {
-            Text("Hello World")
+            iBeaconSimulator()
                 .tag(Tab.simulator)
                 .tabItem {
                     Label("Simulator", systemImage: "wave.3.forward")
@@ -78,7 +78,7 @@ struct ContentView: View {
         } detail: {
             switch selection {
             case .inspector: iBeaconInspector()
-            case .simulator: Text("Hello World")
+            case .simulator: iBeaconSimulator()
             }
         }
     }
@@ -87,34 +87,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-//
-//class CBDelegate: NSObject, CBPeripheralManagerDelegate {
-//    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-//        print(peripheral.state.rawValue)
-//    }
-//    
-//    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: (any Error)?) {
-//        print(error?.localizedDescription)
-//        print(peripheral.isAdvertising)
-//    }
-//}
-//
-//class CDDelegate: NSObject, CBCentralManagerDelegate {
-//    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-//        if central.state == .poweredOn {
-////            central.scanForPeripherals(withServices: nil)
-//        }
-//    }
-//    
-//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-////        let data = advertisementData["kCBAdvDataManufacturerData"] as? Data
-////        guard let data else { return }
-//        print(peripheral.services?.map(\.uuid))
-//    }
-//}
-//
-//extension Data {
-//    var dataToHexString: String {
-//        return reduce("") {$0 + String(format: "%02x", $1)}
-//    }
-//}
