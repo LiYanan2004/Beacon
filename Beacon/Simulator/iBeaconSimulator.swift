@@ -13,12 +13,22 @@ struct iBeaconSimulator: View {
     @State private var minor: UInt16 = 12023
     
     @State private var manager = iBeaconSimulatorManager()
-    @State private var simulatting = false
+    var simulatting: Binding<Bool> {
+        Binding<Bool> {
+            manager.isAdvertising
+        } set: { simulatting in
+            if simulatting {
+                manager.startSimulatting(uuid: uuid, major: major, minor: minor)
+            } else {
+                manager.stopSimulatting()
+            }
+        }
+    }
     
     var body: some View {
         Form {
             Section {
-                LabeledContent("Peripheral Status", value: manager.isEnabled ? "On" : "Off")
+                LabeledContent("Peripheral Status", value: manager.isPoweredOn ? "On" : "Off")
             }
             
             Section {
@@ -36,14 +46,7 @@ struct iBeaconSimulator: View {
             }
             
             Section {
-                Toggle("Simulate", isOn: $simulatting)
-                    .onChange(of: simulatting) {
-                        if simulatting {
-                            simulatting = manager.startSimulatting(uuid: uuid, major: major, minor: minor)
-                        } else {
-                            manager.stopSimulatting()
-                        }
-                    }
+                Toggle("Simulate", isOn: simulatting)
             }
         }
     }

@@ -15,7 +15,8 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
     private var peripheralManager: CBPeripheralManager!
     private var region: CLBeaconRegion!
     
-    var isEnabled = false
+    var isPoweredOn = false
+    var isAdvertising = false
     
     override init() {
         super.init()
@@ -26,24 +27,30 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
         peripheralManager.stopAdvertising()
     }
     
-    @discardableResult
-    func startSimulatting(uuid: String, major: UInt16, minor: UInt16) -> Bool {
+    func startSimulatting(uuid: String, major: UInt16, minor: UInt16) {
         peripheralManager.stopAdvertising()
         region = CLBeaconRegion(uuid: UUID(uuidString: uuid)!, major: major, minor: minor, identifier: Bundle.main.bundleIdentifier!)
         let data = region.peripheralData(withMeasuredPower: nil) as? [String: Any]
         peripheralManager.startAdvertising(data)
-        
-        return peripheralManager.isAdvertising
     }
     
     func stopSimulatting() {
         peripheralManager.stopAdvertising()
+        isAdvertising = false
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        isEnabled = peripheral.state == .poweredOn
+        isPoweredOn = peripheral.state == .poweredOn
         if peripheral.state != .poweredOn {
             peripheral.stopAdvertising()
         }
+    }
+    
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: (any Error)?) {
+        if let error {
+            print(error)
+        }
+        
+        isAdvertising = peripheral.isAdvertising
     }
 }
