@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38295D9B2BA438E0000FE12B /* iBeaconInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38295D9A2BA438E0000FE12B /* iBeaconInspector.swift */; };
+		38295D9E2BA43928000FE12B /* iBeaconInspectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38295D9D2BA43928000FE12B /* iBeaconInspectionManager.swift */; };
+		38295DA12BA459ED000FE12B /* iBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38295DA02BA459ED000FE12B /* iBeacon.swift */; };
+		384B77AE2BA48F3E001B28E1 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 384B77AD2BA48F3E001B28E1 /* Collections */; };
 		385209152BA32F96001EE67A /* BeaconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385209142BA32F96001EE67A /* BeaconApp.swift */; };
 		385209172BA32F96001EE67A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385209162BA32F96001EE67A /* ContentView.swift */; };
 		385209192BA32F97001EE67A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 385209182BA32F97001EE67A /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38295D9A2BA438E0000FE12B /* iBeaconInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconInspector.swift; sourceTree = "<group>"; };
+		38295D9D2BA43928000FE12B /* iBeaconInspectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconInspectionManager.swift; sourceTree = "<group>"; };
+		38295D9F2BA455EB000FE12B /* Beacon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beacon.entitlements; sourceTree = "<group>"; };
+		38295DA02BA459ED000FE12B /* iBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeacon.swift; sourceTree = "<group>"; };
 		385209112BA32F96001EE67A /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		385209142BA32F96001EE67A /* BeaconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconApp.swift; sourceTree = "<group>"; };
 		385209162BA32F96001EE67A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,12 +34,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				384B77AE2BA48F3E001B28E1 /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38295D9C2BA438E6000FE12B /* Inspector */ = {
+			isa = PBXGroup;
+			children = (
+				38295D9A2BA438E0000FE12B /* iBeaconInspector.swift */,
+				38295DA02BA459ED000FE12B /* iBeacon.swift */,
+				38295D9D2BA43928000FE12B /* iBeaconInspectionManager.swift */,
+			);
+			path = Inspector;
+			sourceTree = "<group>";
+		};
+		384B77AB2BA48CE1001B28E1 /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Simulator;
+			sourceTree = "<group>";
+		};
 		385209082BA32F96001EE67A = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +77,11 @@
 		385209132BA32F96001EE67A /* Beacon */ = {
 			isa = PBXGroup;
 			children = (
+				38295D9F2BA455EB000FE12B /* Beacon.entitlements */,
 				385209142BA32F96001EE67A /* BeaconApp.swift */,
 				385209162BA32F96001EE67A /* ContentView.swift */,
+				384B77AB2BA48CE1001B28E1 /* Simulator */,
+				38295D9C2BA438E6000FE12B /* Inspector */,
 				385209182BA32F97001EE67A /* Assets.xcassets */,
 				3852091A2BA32F97001EE67A /* Preview Content */,
 			);
@@ -83,6 +112,9 @@
 			dependencies = (
 			);
 			name = Beacon;
+			packageProductDependencies = (
+				384B77AD2BA48F3E001B28E1 /* Collections */,
+			);
 			productName = Beacon;
 			productReference = 385209112BA32F96001EE67A /* Beacon.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +143,9 @@
 				Base,
 			);
 			mainGroup = 385209082BA32F96001EE67A;
+			packageReferences = (
+				384B77AC2BA48F3E001B28E1 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 385209122BA32F96001EE67A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,6 +172,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38295DA12BA459ED000FE12B /* iBeacon.swift in Sources */,
+				38295D9B2BA438E0000FE12B /* iBeaconInspector.swift in Sources */,
+				38295D9E2BA43928000FE12B /* iBeaconInspectionManager.swift in Sources */,
 				385209172BA32F96001EE67A /* ContentView.swift in Sources */,
 				385209152BA32F96001EE67A /* BeaconApp.swift in Sources */,
 			);
@@ -269,24 +307,32 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Beacon/Beacon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Beacon/Preview Content\"";
 				DEVELOPMENT_TEAM = CJ9X49H2WL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Advertising a beacon";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Send becon";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.liyanan2004.Beacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -298,24 +344,32 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Beacon/Beacon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Beacon/Preview Content\"";
 				DEVELOPMENT_TEAM = CJ9X49H2WL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Advertising a beacon";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Send becon";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.liyanan2004.Beacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -344,6 +398,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		384B77AC2BA48F3E001B28E1 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		384B77AD2BA48F3E001B28E1 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384B77AC2BA48F3E001B28E1 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 385209092BA32F96001EE67A /* Project object */;
 }
