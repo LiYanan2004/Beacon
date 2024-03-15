@@ -10,9 +10,12 @@ import Observation
 import CoreLocation
 import CoreBluetooth
 
+@Observable
 class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
     private var peripheralManager: CBPeripheralManager!
     private var region: CLBeaconRegion!
+    
+    var isEnabled = false
     
     override init() {
         super.init()
@@ -38,6 +41,7 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        isEnabled = peripheral.state == .poweredOn
         if peripheral.state != .poweredOn {
             peripheral.stopAdvertising()
         }

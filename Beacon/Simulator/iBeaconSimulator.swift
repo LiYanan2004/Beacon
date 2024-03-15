@@ -18,6 +18,10 @@ struct iBeaconSimulator: View {
     var body: some View {
         Form {
             Section {
+                LabeledContent("Peripheral Status", value: manager.isEnabled ? "On" : "Off")
+            }
+            
+            Section {
                 Button("Randomize") {
                     uuid = UUID().uuidString
                     major = UInt16.random(in: 0..<UInt16.max)
@@ -27,8 +31,8 @@ struct iBeaconSimulator: View {
             
             Section {
                 TextField("UUID", text: $uuid, prompt: Text("UUID for this iBeacon"))
-                TextField("Major", value: $major, format: .number)
-                TextField("Major", value: $minor, format: .number)
+                TextField("Major", value: $major, format: .number.grouping(.never))
+                TextField("Major", value: $minor, format: .number.grouping(.never))
             }
             
             Section {
