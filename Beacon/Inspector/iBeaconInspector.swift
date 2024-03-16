@@ -129,9 +129,17 @@ extension iBeaconInspector {
             }
         }
         
+        #if os(macOS)
+        ToolbarItemGroup(placement: .principal) {
+            Spacer()
+            inspectionModePicker
+            Spacer()
+        }
+        #else
         ToolbarItem(placement: .principal) {
             inspectionModePicker
         }
+        #endif
         
         ToolbarItem(placement: .cancellationAction) {
             Button(
