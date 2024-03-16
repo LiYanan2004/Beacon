@@ -19,6 +19,7 @@
 		3852091C2BA32F97001EE67A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3852091B2BA32F97001EE67A /* Preview Assets.xcassets */; };
 		38AA3E5C2BA4AA5900AB6414 /* iBeaconImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA3E5B2BA4AA5900AB6414 /* iBeaconImportSheet.swift */; };
 		38BC41812BA5C89B0013978C /* CLInspectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC41802BA5C89B0013978C /* CLInspectionManager.swift */; };
+		38BC41852BA5DFE00013978C /* iCONView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC41842BA5DFE00013978C /* iCONView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		3852091B2BA32F97001EE67A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38AA3E5B2BA4AA5900AB6414 /* iBeaconImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBeaconImportSheet.swift; sourceTree = "<group>"; };
 		38BC41802BA5C89B0013978C /* CLInspectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLInspectionManager.swift; sourceTree = "<group>"; };
+		38BC41842BA5DFE00013978C /* iCONView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iCONView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		3852091A2BA32F97001EE67A /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				38BC41842BA5DFE00013978C /* iCONView.swift */,
 				3852091B2BA32F97001EE67A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -187,6 +190,7 @@
 				38AA3E5C2BA4AA5900AB6414 /* iBeaconImportSheet.swift in Sources */,
 				38BC41812BA5C89B0013978C /* CLInspectionManager.swift in Sources */,
 				38295DA12BA459ED000FE12B /* iBeacon.swift in Sources */,
+				38BC41852BA5DFE00013978C /* iCONView.swift in Sources */,
 				38295D9B2BA438E0000FE12B /* iBeaconInspector.swift in Sources */,
 				384B77B22BA49355001B28E1 /* iBeaconSimulationManager.swift in Sources */,
 				38295D9E2BA43928000FE12B /* CBInspectionManager.swift in Sources */,
@@ -330,6 +334,7 @@
 				DEVELOPMENT_TEAM = CJ9X49H2WL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Signal;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Advertising a beacon";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Send becon";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ranging iBeacons";
@@ -368,6 +373,7 @@
 				DEVELOPMENT_TEAM = CJ9X49H2WL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Signal;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Advertising a beacon";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Send becon";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ranging iBeacons";
