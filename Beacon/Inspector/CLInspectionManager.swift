@@ -38,6 +38,7 @@ class CLInspectionManager: NSObject {
         isScanning = false
         guard let beaconRegion else { return }
         locationManager.stopMonitoring(for: beaconRegion)
+        locationManager.stopRangingBeacons(satisfying: beaconRegion.beaconIdentityConstraint)
     }
 }
 
