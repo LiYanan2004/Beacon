@@ -37,7 +37,8 @@ extension iBeaconInspectionManager: CBCentralManagerDelegate {
         let advData: NSData? = advertisementData["kCBAdvDataManufacturerData"] as? NSData
         guard let advData else { return }
         
-        guard let ibeacon = iBeacon(manufacturerData: advData) else { return }
+        guard var ibeacon = iBeacon(manufacturerData: advData) else { return }
+        ibeacon.deviceID = peripheral.identifier
         ibeacons.updateOrInsert(ibeacon, at: 0)
     }
 }

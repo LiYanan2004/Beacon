@@ -22,7 +22,8 @@ struct iBeaconInspector: View {
             } else {
                 ForEach(manager.ibeacons) { ibeacon in
                     Section {
-                        LabeledContent("UUID", value: ibeacon.beaconID.uuidString)
+                        LabeledContent("Device UUID", value: ibeacon.deviceID?.uuidString ?? "<Unknown>")
+                        LabeledContent("iBeacon UUID", value: ibeacon.beaconID.uuidString)
                         LabeledContent("Major", value: ibeacon.major.formatted(.number.grouping(.never)))
                         LabeledContent("Minor", value: ibeacon.minor.formatted(.number.grouping(.never)))
                     }

@@ -15,6 +15,7 @@ struct iBeacon: Sendable, Codable, Identifiable, Hashable {
     var minor: UInt16
     
     var manufacturerData: Data?
+    var deviceID: UUID?
 }
 
 extension iBeacon: Transferable {
