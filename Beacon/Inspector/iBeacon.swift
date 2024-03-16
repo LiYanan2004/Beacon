@@ -16,6 +16,50 @@ struct iBeacon: Sendable, Codable, Identifiable, Hashable {
     
     var manufacturerData: Data?
     var deviceID: UUID?
+    
+    func mData() -> Data {
+        if let manufacturerData {
+            return manufacturerData
+        }
+        var manufacturerData = Data(repeating: 0x00, count: 25)
+        let header: [UInt8] = [0x00, 0x00, 0x02, 0x15]
+        manufacturerData[0..<4] = header.withUnsafeBytes { header_t in
+            NSData(bytes: header_t.baseAddress, length: 4) as Data
+        }
+        
+        var uuid = beaconID
+        manufacturerData[4..<20] = withUnsafeBytes(of: &uuid) { uuid_t in
+            NSData(bytes: uuid_t.baseAddress, length: 16) as Data
+        }
+        
+        var major = (self.major << 8) | (self.major >> 8)
+        manufacturerData[20..<22] = withUnsafeBytes(of: &major) { major_t in
+            NSData(bytes: major_t.baseAddress, length: 2) as Data
+        }
+        
+        var minor = (self.minor << 8) | (self.minor >> 8)
+        manufacturerData[22..<24] = withUnsafeBytes(of: &minor) { minor_t in
+            NSData(bytes: minor_t.baseAddress, length: 2) as Data
+        }
+        
+        return manufacturerData
+    }
+    
+    static var example: iBeacon {
+        iBeacon(
+            beaconID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!,
+            major: 10009,
+            minor: 12023
+        )
+    }
+    
+    static var random: iBeacon {
+        iBeacon(
+            beaconID: UUID(),
+            major: UInt16.random(in: 0 ..< UInt16.max),
+            minor: UInt16.random(in: 0 ..< UInt16.max)
+        )
+    }
 }
 
 extension iBeacon: Transferable {
@@ -64,7 +108,7 @@ extension iBeacon {
             .subdata(with: range)
             .map { $0 }
         return bytes.withUnsafeBytes { p in
-            p.loadUnaligned(as: type)
+            p.load(as: type)
         }
     }
 }

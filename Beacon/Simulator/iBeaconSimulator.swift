@@ -14,21 +14,26 @@ struct iBeaconSimulator: View {
             manager.isAdvertising
         } set: { simulatting in
             if simulatting {
-                manager.startSimulatting(uuid: uuid, major: major, minor: minor)
+                switch type {
+                case .data: manager.startSimulatting(data: beacon.mData())
+                case .apple: manager.startSimulatting(
+                    uuid: beacon.beaconID.uuidString,
+                    major: beacon.major,
+                    minor: beacon.minor
+                )
+                }
             } else {
                 manager.stopSimulatting()
             }
         }
     }
     
-    @State private var uuid = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825"
-    @State private var major: UInt16 = 10009
-    @State private var minor: UInt16 = 12023
-    
+    @State private var type = SimulationType.data
+    @State private var beacon = iBeacon.example
+    @State private var uuid = iBeacon.example.beaconID.uuidString
     @State private var showImporter = false
     @State private var importediBeacons = [iBeacon]()
     @State private var showiBeaconsPicker = false
-    @State private var importediBeaconSelection: iBeacon?
     
     var body: some View {
         Form {
@@ -38,18 +43,29 @@ struct iBeaconSimulator: View {
             
             Section {
                 Button("Randomize") {
-                    uuid = UUID().uuidString
-                    major = UInt16.random(in: 0..<UInt16.max)
-                    minor = UInt16.random(in: 0..<UInt16.max)
+                    beacon = .random
+                    uuid = beacon.beaconID.uuidString
                 }
             } footer: {
                 Text("Generate Random iBeacon")
             }
             
             Section {
+                Picker("Plan", selection: $type) {
+                    Text("Apple iBeacon").tag(SimulationType.apple)
+                    Text("Custom").tag(SimulationType.data)
+                }
+                .pickerStyle(.segmented)
                 TextField("UUID", text: $uuid, prompt: Text("UUID for this iBeacon"))
-                TextField("Major", value: $major, format: .number.grouping(.never))
-                TextField("Major", value: $minor, format: .number.grouping(.never))
+                    .onSubmit {
+                        if let uuid = UUID(uuidString: uuid) {
+                            beacon.beaconID = uuid
+                        } else {
+                            self.uuid = beacon.beaconID.uuidString
+                        }
+                    }
+                TextField("Major", value: $beacon.major, format: .number.grouping(.never))
+                TextField("Major", value: $beacon.minor, format: .number.grouping(.never))
             } header: {
                 Text("iBeacon Info")
             }
@@ -79,16 +95,23 @@ struct iBeaconSimulator: View {
         }
         .sheet(isPresented: $showiBeaconsPicker) {
             iBeaconImportSelectionSheet(importediBeacons: importediBeacons) { selection in
-                uuid = selection.beaconID.uuidString
-                major = selection.major
-                minor = selection.minor
-                self.importediBeaconSelection = nil
+                beacon = selection
                 self.importediBeacons = []
             }
         }
+    }
+    
+    enum SimulationType {
+        case apple, data
     }
 }
 
 #Preview {
     iBeaconSimulator()
+}
+
+extension Data {
+    func hexEncodedString() -> String {
+        return map { String(format: "%02hhx", $0) }.joined()
+    }
 }
