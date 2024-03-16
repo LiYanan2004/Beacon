@@ -42,7 +42,7 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         isPoweredOn = peripheral.state == .poweredOn
         if peripheral.state != .poweredOn {
-            peripheral.stopAdvertising()
+            stopSimulatting()
         }
     }
     
@@ -51,6 +51,10 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
             print(error)
         }
         
-        isAdvertising = peripheral.isAdvertising
+        if isPoweredOn {
+            isAdvertising = peripheral.isAdvertising
+        } else {
+            stopSimulatting()
+        }
     }
 }
