@@ -24,6 +24,14 @@ class iBeaconInspectionManager: NSObject {
     deinit {
         centralManager.stopScan()
     }
+    
+    func restart() {
+        centralManager.stopScan()
+        ibeacons.removeAll()
+        if centralManager.state == .poweredOn {
+            centralManager.scanForPeripherals(withServices: nil)
+        }
+    }
 }
 
 extension iBeaconInspectionManager: CBCentralManagerDelegate {

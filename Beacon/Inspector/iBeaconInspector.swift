@@ -31,21 +31,34 @@ struct iBeaconInspector: View {
             }
         }
         .formStyle(.grouped)
-        .toolbar {
-            ToolbarItem {
-                Button("Export", systemImage: "square.and.arrow.up") {
-                    let json = try? JSONEncoder().encode(manager.ibeacons.elements)
-                    guard let json else { return }
-                    
-                    let jsonString = String(data: json, encoding: .utf8)
-                    guard let jsonString else { return }
-                    exportedJSON = jsonString
-                    showExporter = true
-                }
-            }
-        }
+        .toolbar(content: toolbar)
         .fileExporter(isPresented: $showExporter, item: exportedJSON, defaultFilename: "iBeacons_\(Date.now.ISO8601Format())") { _ in }
         .fileDialogConfirmationLabel(Text("Export"))
+    }
+}
+
+extension iBeaconInspector {
+    @ToolbarContentBuilder
+    private func toolbar() -> some ToolbarContent {
+        ToolbarItem {
+            Button("Export", systemImage: "square.and.arrow.up") {
+                let json = try? JSONEncoder().encode(manager.ibeacons.elements)
+                guard let json else { return }
+                
+                let jsonString = String(data: json, encoding: .utf8)
+                guard let jsonString else { return }
+                exportedJSON = jsonString
+                showExporter = true
+            }
+        }
+        
+        ToolbarItem(placement: .cancellationAction) {
+            Button(
+                "Reset",
+                systemImage: "arrow.clockwise",
+                action: manager.restart
+            )
+        }
     }
 }
 
