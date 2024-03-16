@@ -47,8 +47,8 @@ struct iBeacon: Sendable, Codable, Identifiable, Hashable {
     static var example: iBeacon {
         iBeacon(
             beaconID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!,
-            major: 10009,
-            minor: 12023
+            major: 10090,
+            minor: 57622
         )
     }
     
