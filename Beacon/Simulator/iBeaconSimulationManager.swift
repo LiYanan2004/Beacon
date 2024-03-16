@@ -9,6 +9,9 @@ import Foundation
 import Observation
 import CoreLocation
 import CoreBluetooth
+#if canImport(UIKit)
+import UIKit
+#endif
 
 @Observable
 class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
@@ -24,7 +27,7 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
     }
     
     deinit {
-        peripheralManager.stopAdvertising()
+        stopSimulatting()
     }
     
     func startSimulatting(uuid: String, major: UInt16, minor: UInt16) {
@@ -32,11 +35,17 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
         region = CLBeaconRegion(uuid: UUID(uuidString: uuid)!, major: major, minor: minor, identifier: Bundle.main.bundleIdentifier!)
         let data = region.peripheralData(withMeasuredPower: nil) as? [String: Any]
         peripheralManager.startAdvertising(data)
+        #if canImport(UIKit)
+        UIApplication.shared.isIdleTimerDisabled = true
+        #endif
     }
     
     func stopSimulatting() {
         peripheralManager.stopAdvertising()
         isAdvertising = false
+        #if canImport(UIKit)
+        UIApplication.shared.isIdleTimerDisabled = false
+        #endif
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
