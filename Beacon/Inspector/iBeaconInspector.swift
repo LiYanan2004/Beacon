@@ -117,15 +117,17 @@ struct iBeaconInspector: View {
 extension iBeaconInspector {
     @ToolbarContentBuilder
     private func toolbar() -> some ToolbarContent {
-        ToolbarItem {
-            Button("Export", systemImage: "square.and.arrow.up") {
-                let json = try? JSONEncoder().encode(cbmanager.ibeacons.elements)
-                guard let json else { return }
-                
-                let jsonString = String(data: json, encoding: .utf8)
-                guard let jsonString else { return }
-                exportedJSON = jsonString
-                showExporter = true
+        if inspectionMode == .common {
+            ToolbarItem {
+                Button("Export", systemImage: "square.and.arrow.up") {
+                    let json = try? JSONEncoder().encode(cbmanager.ibeacons.elements)
+                    guard let json else { return }
+                    
+                    let jsonString = String(data: json, encoding: .utf8)
+                    guard let jsonString else { return }
+                    exportedJSON = jsonString
+                    showExporter = true
+                }
             }
         }
         
@@ -141,12 +143,14 @@ extension iBeaconInspector {
         }
         #endif
         
-        ToolbarItem(placement: .cancellationAction) {
-            Button(
-                "Reset",
-                systemImage: "arrow.clockwise",
-                action: cbmanager.restart
-            )
+        if inspectionMode == .common {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(
+                    "Reset",
+                    systemImage: "arrow.clockwise",
+                    action: cbmanager.restart
+                )
+            }
         }
     }
     
