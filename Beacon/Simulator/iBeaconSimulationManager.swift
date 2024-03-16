@@ -34,13 +34,6 @@ class iBeaconSimulatorManager: NSObject, CBPeripheralManagerDelegate {
         peripheralManager.startAdvertising(data)
     }
     
-    func startSimulatting(data: Data) {
-        let data = [
-            CBAdvertisementDataManufacturerDataKey : data as NSData
-        ]
-        peripheralManager.startAdvertising(data)
-    }
-    
     func stopSimulatting() {
         peripheralManager.stopAdvertising()
         isAdvertising = false

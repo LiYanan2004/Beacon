@@ -14,21 +14,17 @@ struct iBeaconSimulator: View {
             manager.isAdvertising
         } set: { simulatting in
             if simulatting {
-                switch type {
-                case .data: manager.startSimulatting(data: beacon.mData())
-                case .apple: manager.startSimulatting(
+                manager.startSimulatting(
                     uuid: beacon.beaconID.uuidString,
                     major: beacon.major,
                     minor: beacon.minor
                 )
-                }
             } else {
                 manager.stopSimulatting()
             }
         }
     }
     
-    @State private var type = SimulationType.data
     @State private var beacon = iBeacon.example
     @State private var uuid = iBeacon.example.beaconID.uuidString
     @State private var showImporter = false
@@ -51,11 +47,6 @@ struct iBeaconSimulator: View {
             }
             
             Section {
-                Picker("Plan", selection: $type) {
-                    Text("Apple iBeacon").tag(SimulationType.apple)
-                    Text("Custom").tag(SimulationType.data)
-                }
-                .pickerStyle(.segmented)
                 TextField("UUID", text: $uuid, prompt: Text("UUID for this iBeacon"))
                     .onSubmit {
                         if let uuid = UUID(uuidString: uuid) {
@@ -69,6 +60,7 @@ struct iBeaconSimulator: View {
             } header: {
                 Text("iBeacon Info")
             }
+            .onChange(of: beacon, manager.stopSimulatting)
             
             Section {
                 Toggle("Advertise", isOn: simulatting)
