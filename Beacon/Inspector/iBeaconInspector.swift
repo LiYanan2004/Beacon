@@ -38,6 +38,8 @@ struct iBeaconInspector: View {
             case .ibeacon: ibeaconInspector
             }
         }
+        .fileExporter(isPresented: $showExporter, item: exportedJSON, defaultFilename: "iBeacon_\(Date.now.ISO8601Format())") { _ in }
+        .fileDialogConfirmationLabel(Text("Export"))
         .formStyle(.grouped)
         .toolbar(content: toolbar)
     }
@@ -107,8 +109,6 @@ struct iBeaconInspector: View {
                 }
             }
         }
-        .fileExporter(isPresented: $showExporter, item: exportedJSON, defaultFilename: "Bluetooth_\(Date.now.ISO8601Format())") { _ in }
-        .fileDialogConfirmationLabel(Text("Export"))
         .onAppear(perform: cbmanager.startScanning)
         .onDisappear(perform: cbmanager.stopScanning)
     }
@@ -117,17 +117,18 @@ struct iBeaconInspector: View {
 extension iBeaconInspector {
     @ToolbarContentBuilder
     private func toolbar() -> some ToolbarContent {
-        if inspectionMode == .common {
-            ToolbarItem {
-                Button("Export", systemImage: "square.and.arrow.up") {
-                    let json = try? JSONEncoder().encode(cbmanager.ibeacons.elements)
-                    guard let json else { return }
-                    
-                    let jsonString = String(data: json, encoding: .utf8)
-                    guard let jsonString else { return }
-                    exportedJSON = jsonString
-                    showExporter = true
+        ToolbarItem {
+            Button("Export", systemImage: "square.and.arrow.up") {
+                let json = switch inspectionMode {
+                case .common: try? JSONEncoder().encode(cbmanager.ibeacons.elements)
+                case .ibeacon: try? JSONEncoder().encode(clmanager.discoveredBeacons)
                 }
+                guard let json else { return }
+                
+                let jsonString = String(data: json, encoding: .utf8)
+                guard let jsonString else { return }
+                exportedJSON = jsonString
+                showExporter = true
             }
         }
         
